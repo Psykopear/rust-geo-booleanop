@@ -111,18 +111,34 @@ where
             if result.is_empty() {
                 result.push(Polygon::new(contour, Vec::new()));
             } else {
-                result
+                let exterior = result
                     .last_mut()
                     .expect("Result must not be empty at this point")
-                    .interiors
-                    .push(contour);
+                    .exterior()
+                    .clone();
+                let mut interiors = result
+                    .last_mut()
+                    .expect("Result must not be empty at this point")
+                    .interiors()
+                    .to_vec();
+                interiors.push(contour);
+                result.pop();
+                result.push(Polygon::new(exterior, interiors));
             }
         } else if operation == Operation::Difference && !result_events[i as usize].is_subject && result.len() > 1 {
-            result
+            let exterior = result
                 .last_mut()
                 .expect("Result must not be empty at this point")
-                .interiors
-                .push(contour);
+                .exterior()
+                .clone();
+            let mut interiors = result
+                .last_mut()
+                .expect("Result must not be empty at this point")
+                .interiors()
+                .to_vec();
+            interiors.push(contour);
+            result.pop();
+            result.push(Polygon::new(exterior, interiors));
         } else {
             result.push(Polygon::new(contour, Vec::new()));
         }
