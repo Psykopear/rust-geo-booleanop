@@ -12,24 +12,24 @@ where
 
         assert_eq!(result, expected);
     }
-    {
-        let result = subject.difference(clipping);
-        let expected = fixture_multi_polygon(format!("feature_types/out/difference/{}", expected_name).as_str());
+    // {
+    //     let result = subject.difference(clipping);
+    //     let expected = fixture_multi_polygon(format!("feature_types/out/difference/{}", expected_name).as_str());
 
-        assert_eq!(result, expected);
-    }
-    {
-        let result = subject.union(clipping);
-        let expected = fixture_multi_polygon(format!("feature_types/out/union/{}", expected_name).as_str());
+    //     assert_eq!(result, expected);
+    // }
+    // {
+    //     let result = subject.union(clipping);
+    //     let expected = fixture_multi_polygon(format!("feature_types/out/union/{}", expected_name).as_str());
 
-        assert_eq!(result, expected);
-    }
-    {
-        let result = subject.xor(clipping);
-        let expected = fixture_multi_polygon(format!("feature_types/out/xor/{}", expected_name).as_str());
+    //     assert_eq!(result, expected);
+    // }
+    // {
+    //     let result = subject.xor(clipping);
+    //     let expected = fixture_multi_polygon(format!("feature_types/out/xor/{}", expected_name).as_str());
 
-        assert_eq!(result, expected);
-    }
+    //     assert_eq!(result, expected);
+    // }
 }
 
 #[test]

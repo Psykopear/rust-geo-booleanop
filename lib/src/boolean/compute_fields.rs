@@ -29,14 +29,16 @@ where
     match event.get_edge_type() {
         EdgeType::Normal => match operation {
             Operation::Intersection => !event.is_other_in_out(),
-            Operation::Union => event.is_other_in_out(),
-            Operation::Difference => {
-                (event.is_subject && event.is_other_in_out()) || (!event.is_subject && !event.is_other_in_out())
-            }
-            Operation::Xor => true,
+            // Operation::Union => event.is_other_in_out(),
+            // Operation::Difference => {
+            //     (event.is_subject && event.is_other_in_out()) || (!event.is_subject && !event.is_other_in_out())
+            // }
+            // Operation::Xor => true,
         },
-        EdgeType::SameTransition => operation == Operation::Intersection || operation == Operation::Union,
-        EdgeType::DifferentTransition => operation == Operation::Difference,
+        // EdgeType::SameTransition => operation == Operation::Intersection || operation == Operation::Union,
+        EdgeType::SameTransition => operation == Operation::Intersection,
+        // EdgeType::DifferentTransition => operation == Operation::Difference,
+        EdgeType::DifferentTransition => false,
         EdgeType::NonContributing => false,
     }
 }

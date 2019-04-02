@@ -21,9 +21,6 @@ use self::subdivide_segments::subdivide;
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]
 pub enum Operation {
     Intersection,
-    Difference,
-    Union,
-    Xor,
 }
 
 pub trait BooleanOp<F, Rhs = Self>
@@ -34,18 +31,6 @@ where
 
     fn intersection(&self, rhs: &Rhs) -> MultiPolygon<F> {
         self.boolean(rhs, Operation::Intersection)
-    }
-
-    fn difference(&self, rhs: &Rhs) -> MultiPolygon<F> {
-        self.boolean(rhs, Operation::Difference)
-    }
-
-    fn union(&self, rhs: &Rhs) -> MultiPolygon<F> {
-        self.boolean(rhs, Operation::Union)
-    }
-
-    fn xor(&self, rhs: &Rhs) -> MultiPolygon<F> {
-        self.boolean(rhs, Operation::Xor)
     }
 }
 
@@ -119,7 +104,5 @@ where
 {
     match operation {
         Operation::Intersection => MultiPolygon(vec![]),
-        Operation::Difference => MultiPolygon(Vec::from(subject)),
-        Operation::Union | Operation::Xor => MultiPolygon(subject.iter().chain(clipping).cloned().collect()),
     }
 }

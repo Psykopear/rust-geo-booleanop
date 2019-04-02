@@ -125,20 +125,6 @@ where
                 result.pop();
                 result.push(Polygon::new(exterior, interiors));
             }
-        } else if operation == Operation::Difference && !result_events[i as usize].is_subject && result.len() > 1 {
-            let exterior = result
-                .last_mut()
-                .expect("Result must not be empty at this point")
-                .exterior()
-                .clone();
-            let mut interiors = result
-                .last_mut()
-                .expect("Result must not be empty at this point")
-                .interiors()
-                .to_vec();
-            interiors.push(contour);
-            result.pop();
-            result.push(Polygon::new(exterior, interiors));
         } else {
             result.push(Polygon::new(contour, Vec::new()));
         }

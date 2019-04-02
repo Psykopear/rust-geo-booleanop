@@ -28,11 +28,12 @@ where
     }
 
     for polygon in clipping {
-        let exterior = operation != Operation::Difference;
-        if exterior {
-            contour_id += 1;
-        }
-        process_polygon(polygon.exterior(), false, contour_id, &mut event_queue, cbbox, exterior);
+        // let exterior = operation != Operation::Difference;
+        // if exterior {
+        //     contour_id += 1;
+        // }
+        // process_polygon(polygon.exterior(), false, contour_id, &mut event_queue, cbbox, exterior);
+        process_polygon(polygon.exterior(), false, contour_id, &mut event_queue, cbbox, true);
         for interior in polygon.interiors().into_iter() {
             process_polygon(interior, false, contour_id, &mut event_queue, cbbox, false);
         }

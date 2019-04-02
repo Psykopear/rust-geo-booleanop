@@ -25,9 +25,9 @@ where
     while let Some(event) = event_queue.pop() {
         sorted_events.push(event.clone());
 
-        if operation == Operation::Intersection && event.point.x > rightbound
-            || operation == Operation::Difference && event.point.x > sbbox.max.x
-        {
+        // if operation == Operation::Intersection && event.point.x > rightbound
+        // || operation == Operation::Difference && event.point.x > sbbox.max.x
+        if operation == Operation::Intersection && event.point.x > rightbound {
             break;
         }
 
